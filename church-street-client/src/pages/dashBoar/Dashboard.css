@@ -1,0 +1,665 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.add-btn {
+  background-color: #fa6b05;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.employee-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.employee-table th,
+.employee-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.employee-table .email {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Estilos para el botón "Add Application" */
+.add-btn {
+    padding: 0.6rem 1.2rem;
+    background-color: #fa6b05;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: transparent;
+    border: 2px solid #fa6b05;
+    color: #fa6b05;
+}
+
+
+/* --- ESTILOS CLAVE PARA LOS BOTONES DE ACCIÓN EN LA TABLA --- */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Alinea los botones al inicio */
+}
+
+.action-buttons button {
+    /* Ajusta el padding para botones solo con iconos, puede ser más pequeño */
+    padding: 8px; /* Padding igual en todos los lados */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Los iconos son SVG, así que podemos ajustar su tamaño directamente */
+    display: flex; /* Para centrar el icono si el padding lo permite */
+    align-items: center;
+    justify-content: center;
+    width: 34px; /* Ancho fijo para botones de icono cuadrados */
+    height: 34px; /* Altura fija */
+}
+
+/* Estilo para los iconos SVG dentro de los botones */
+.action-buttons button svg {
+    font-size: 1.1em; /* Ajusta el tamaño del icono */
+    color: inherit; /* Hereda el color del texto del botón */
+}
+
+/* Estilo para el botón "Imprimir" */
+.action-buttons .print-btn {
+    background-color: #fa6b05;
+    color: white; /* Color del icono */
+    border: 1px solid transparent;
+}
+
+.action-buttons .print-btn:hover {
+    background-color: transparent;
+    color: #fa6b05;
+    border: 1px solid #fa6b05;
+    transform: translateY(-1px);
+}
+
+/* Estilo para el botón "Eliminar" */
+.action-buttons .delete-btn {
+    background-color: #dc3545;
+    color: white; /* Color del icono */
+}
+
+.action-buttons .delete-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Styling for the Icon Buttons (Show/Hide Code) */
+.icon-btn {
+  background: none; /* No background color */
+  border: none; /* No border */
+  color: #fa6b05; /* A prominent color for the icon */
+  cursor: pointer;
+  font-size: 16px; /* Adjust size as needed */
+  padding: 5px; /* Add some padding around the icon */
+  margin-left: 5px; /* Space between "..." and the icon */
+  vertical-align: middle; /* Align icon vertically with text/dots */
+  transition: color 0.2s ease; /* Smooth transition for hover effect */
+  border: 1px solid transparent;
+}
+
+.icon-btn:hover {
+  color: #c55404; /* Darker shade on hover */
+}
+
+/* --- Modal Overlay --- */
+.modal-overlay {
+  position: fixed; /* Stays in place even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+/* --- Modal Content Box --- */
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px; /* Max width for readability */
+  width: 90%; /* Responsive width */
+  animation: fadeInScale 0.3s ease-out; /* Simple entry animation */
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+/* --- Modal Action Buttons --- */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-actions .confirm-btn {
+  background-color: #dc3545; /* Red for destructive action */
+  color: white;
+  border: 1px solid #dc3545;
+}
+
+.modal-actions .confirm-btn:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.modal-actions .cancel-btn {
+  background-color: #f8f9fa; /* Light background for cancel */
+  color: #333;
+  border: 1px solid #ced4da;
+}
+
+.modal-actions .cancel-btn:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+/* --- Optional: Animation for Modal Entry --- */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Modal Overlay (unchanged) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* --- Modal Content Box --- */
+/* This will apply to both delete and add modals, but we'll override for add below */
+.modal-content {
+  background-color: white;
+  padding: 25px; /* Slightly reduced padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 350px; /* Reduced max-width for general modal content */
+  width: 90%; /* Responsive width */
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 18px; /* Slightly smaller font size for header */
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #555;
+  margin-bottom: 20px; /* Slightly reduced margin */
+  font-size: 15px; /* Slightly smaller font size for paragraph */
+}
+
+/* --- Specific styling for the ADD Employee Modal content to make it even smaller/more compact --- */
+.modal-content.add-employee-modal-content {
+  max-width: 320px; /* Even smaller max-width specifically for the add modal */
+  padding: 20px; /* Reduced padding for a more compact form */
+}
+
+/* Form group styling for modals (unchanged from previous) */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+  font-size: 13px; /* Adjusted label font size */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+  width: calc(100% - 20px); /* Adjust width considering new padding */
+  padding: 8px; /* Reduced input padding */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #fa6b05;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(226, 147, 0, 0.25);
+}
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  appearance: none; /* Oculta el estilo nativo en la mayoría de navegadores */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.form-group select:focus {
+  border-color: #ffa500; /* Naranja al enfocar */
+  outline: none;
+  box-shadow: 0 0 3px rgba(255, 165, 0, 0.5);
+}
+
+
+/* --- Modal Action Buttons (unchanged, but confirm-btn colors adjusted for clarity between modals) --- */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px; /* Added margin for separation from form */
+}
+
+.modal-actions button {
+  padding: 9px 18px; /* Slightly reduced button padding */
+  border-radius: 5px;
+  font-size: 14px; /* Slightly smaller button font size */
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Default confirm button color (for add modal, as it comes last in CSS) */
+.modal-actions .confirm-btn {
+  background-color: #fa6b05;
+  color: white;
+  border: 1px solid transparent;
+}
+
+.modal-actions .confirm-btn:hover {
+  background-color: transparent;
+  color: #fa6b05;
+  border:1px solid #fa6b05;
+}
+
+/* Override for the delete modal's confirm button (makes it red) */
+/* This ensures the delete button is red even after the add modal's blue is defined */
+.modal-overlay .modal-content:not(.add-employee-modal-content) .confirm-btn {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border:  1px solid transparent;
+}
+
+.modal-overlay .modal-content:not(.add-employee-modal-content) .confirm-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+
+.modal-actions .cancel-btn {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid transparent;
+}
+
+.modal-actions .-btn:hover {
+  background-color: #e2e6ea;
+  border-color: #ccd1d6;
+
+  
+}
+
+/* Animation for Modal Entry (unchanged) */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Other table and header styles (keep your existing ones) --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+
+
+.employee-table {
+  width: 100%;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.employee-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-table th,
+.employee-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.employee-table th {
+  background-color: #f8f8f8;
+  color: #555;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.employee-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.employee-table td strong {
+  display: block;
+  font-weight: 600;
+  color: #333;
+}
+
+.employee-table td .email {
+  color: #777;
+  font-size: 13px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+
+
+.icon-btn.delete-btn {
+  color: #dc3545;
+  margin-right: 5px;
+}
+.icon-btn.delete-btn:hover {
+  color: #c82333;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.recipients-section {
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipients-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.recipients-section li {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.recipients-section {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.recipients-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.recipient-item {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 4px;
+  padding: 2px;
+  font-size: 0.9rem;
+}
+
+.remove-btn:hover {
+  color: darkred;
+  
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+
+.modal-content {
+  max-height: 90vh;            /* Limita altura del modal */
+  overflow-y: auto;            /* Scroll solo dentro del modal si es necesario */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+}
+.element-employes-email{
+    list-style: none;
+
+}
+.element-employes-email li{
+    background-color: #dbdbdb;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    border-radius: 20px;
+
+}
+
+
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.employee-card {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+}
+
+.employee-card label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  
+}
+
+.employee-info strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.modal-content button {
+  margin-top: 1rem;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.employee-card.selected {
+  border: 2px solid #fa6b05;
+  background-color: #fff7e6;
+}
+
+.employee-card input[type="checkbox"] {
+  accent-color: #fa6b05;   /* Cambia el color del check en navegadores modernos */
+}
+
+.modal-content > button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  background-color: #fa6b05;
+  color: white;
+  border-radius: 10px;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content > button:hover {
+  background-color: transparent;
+  color: #fa6b05;
+  border: 2px solid #fa6b05;
+
+}

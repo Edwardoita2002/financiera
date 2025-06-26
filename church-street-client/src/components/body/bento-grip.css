@@ -1,0 +1,289 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFFFF; /* ¡Fondo blanco! */
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
+.app {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: #f8fafc; /* Puedes mantener este o cambiarlo a blanco también si prefieres */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.80);
+  margin: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-title {
+  margin-top:  6rem;
+  margin-bottom: 6rem;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #050505;
+  
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.bento-icon{
+  color: #fa6b05;
+}
+/* Responsive grid (para pantallas mayores o iguales a 768px) */
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 20rem; /* Define una altura uniforme para las filas */
+  }
+}
+
+/* Grid spans */
+.col-span-1 {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .col-span-2 {
+    grid-column: span 2;
+  }
+}
+
+/* Bento Item */
+.bento-item {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 250px; /* Altura mínima para los ítems */
+}
+
+.bento-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #cbd5e1;
+}
+
+/* Header del item (Contenedor de la imagen de fondo) */
+.bento-header {
+  flex: 1; /* Permite que el header ocupe el espacio disponible */
+  margin-bottom: 1rem;
+  min-height: 100px; /* Altura mínima predeterminada para el header de la imagen */
+  background-color: #f1f5f9; /* Color de fondo por defecto si no hay imagen */
+  border-radius: 0.75rem;
+  overflow: hidden; /* Asegura que la imagen no se salga de los bordes redondeados */
+
+  /* Propiedades de la imagen de fondo por defecto para pantallas grandes */
+  background-size: cover; /* La imagen cubre todo el área, puede cortar */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repetición si la imagen no cubre */
+}
+
+
+/* Skeleton (Si no lo vas a usar en absoluto, puedes eliminar este bloque) */
+.skeleton {
+  width: 100%;
+  height: 100%;
+  min-height: 6rem; /* Mantiene una altura para el esqueleto si se usa */
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Contenido del item (texto, iconos, etc.) */
+.bento-content {
+  transition: transform 0.3s ease;
+}
+
+.bento-item:hover .bento-content {
+  transform: translateX(0.5rem);
+}
+
+/* Icono */
+.bento-icon {
+  margin-bottom: 0.75rem;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #64748b;
+  stroke-width: 2;
+}
+
+/* Título */
+.bento-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Descripción */
+.bento-description {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Efectos adicionales (borde superior al hover) */
+.bento-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f89e02, #f78400fd, #d48806); /* Gradiente naranja/amarillo */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #FFFFFF; /* ¡También blanco en modo oscuro! */
+    color: #333333; /* Color de texto más oscuro para contraste */
+  }
+
+  .main-title {
+    color: #1a1a1a; /* Título oscuro para contraste en fondo claro */
+  }
+
+  .app {
+    background-color: #f0f0f0; /* Un gris muy claro para diferenciar el contenedor principal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .bento-item {
+    background: #030303; /* Un gris claro para los ítems */
+    border-color: #cccccc;
+  }
+
+  .bento-item:hover {
+    border-color: #f6a800; /* Borde naranja al pasar el mouse */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+                0 10px 10px -5px rgba(0, 0, 0, 0.08);
+  }
+
+  .bento-header {
+    background-color: #d0d0d0; /* Fondo del header en modo oscuro si no hay imagen */
+  }
+
+  /* Si mantienes el skeleton, ajusta sus colores para dark mode */
+  .skeleton {
+    background: linear-gradient(90deg, #d0d0d0 25%, #e0e0e0 50%, #d0d0d0 75%);
+    border-color: #e0e0e0;
+  }
+
+  .bento-title {
+    color: #fa6b05; /* Título oscuro */
+  }
+
+  .bento-description {
+    color: #797878; /* Descripción más oscura */
+  }
+
+  .icon {
+    color: #fa6b05; /* Icono más oscuro */
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bento-item {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Retrasos para la animación de cada ítem */
+.bento-item:nth-child(1) { animation-delay: 0.1s; }
+.bento-item:nth-child(2) { animation-delay: 0.2s; }
+.bento-item:nth-child(3) { animation-delay: 0.3s; }
+.bento-item:nth-child(4) { animation-delay: 0.4s; }
+
+
+/* Ajustes responsive para pantallas pequeñas (hasta 767px) */
+@media (max-width: 767px) {
+  .app {
+    padding: 1rem 0.5rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .bento-grid {
+    gap: 1rem;
+  }
+
+  .bento-item {
+    padding: 1rem;
+    min-height: 200px; /* Ajuste la altura mínima para ítems en móviles */
+  }
+
+  .bento-header {
+    min-height: 120px; /* Altura para el header de la imagen en móviles */
+    background-size: contain; /* ¡Clave! La imagen se ajusta completamente sin cortarse */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.bento-item:focus {
+  outline: 2px solid #f6a53b;
+  outline-offset: 2px;
+}

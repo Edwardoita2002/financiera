@@ -1,0 +1,251 @@
+/* --- ESTRUCTURA PRINCIPAL --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+}
+
+/* --- LOGO --- */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.company-name {
+  white-space: nowrap;
+}
+
+/* --- LINKS DESKTOP: centrados --- */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  flex: 1; /* Ocupa el espacio disponible */
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #fa6b05;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-links a:hover::after,
+.navbar-links a.active::after {
+  width: 100%;
+}
+
+/* --- ICONO IZQUIERDA EN BOTONES --- */
+.icon-left {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* --- BOTONES DE CONTACTO --- */
+.contact-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* Quítale margin-left:auto para que no empuje a la derecha */
+  /* margin-left: auto; */
+}
+
+.btn-contacto,
+.btn-signin {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.9rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-contacto {
+  background: #fa6b05;
+  color: #fff;
+}
+
+.btn-contacto:hover {
+  color: #fa6b05;
+  border-color: #fa6b05;
+  background-color: transparent;
+  box-shadow: 0 2px 8px rgba(196, 85, 4, 0.1);
+}
+
+.btn-signin {
+  color: #fa6b05;
+}
+
+.btn-signin:hover {
+  border-color: #c45504;
+  box-shadow: 0 2px 8px rgba(196, 85, 4, 0.1);
+}
+
+/* --- BOTÓN MENÚ --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 10;
+}
+
+.menu-toggle.inside-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #fa6b05;
+}
+
+.menu-icon {
+  transition: transform 0.3s;
+}
+
+.menu-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* --- PANEL LATERAL DERECHO --- */
+.menu-panel {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 22rem;
+  padding: 4rem 2rem 1rem 1rem;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 2px 400px rgba(251, 127, 2, 0.8);
+  z-index: 5;
+  height: 100vh;
+}
+
+/* --- LINKS EN PANEL LATERAL --- */
+.menu-panel .navbar-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.menu-panel .navbar-links a {
+  font-size: 1.1rem;
+}
+
+.menu-panel .btn-contacto,
+.menu-panel .btn-signin {
+  width: 100%;
+  justify-content: center;
+  padding: 0.4rem 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.menu-title {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid #fa6b05;
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    max-height: 4.5rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fa6b05;
+  }
+
+  #btn-desktop {
+    display: none;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 1rem 0;
+    width: 100%;
+    flex: unset; /* quitar el flex-grow para móviles */
+    justify-content: flex-start;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn-contacto,
+  .btn-signin {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .company-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 600px) {
+  .company-name {
+    flex-grow: 1;
+    width: auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .navbar-logo {
+    gap: 1rem;
+  }
+}
